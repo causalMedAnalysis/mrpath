@@ -1,0 +1,15 @@
+d 'MRPATH': module to estimate path-specific effects using parametric multiply robust methods
+d
+d mrpath estimates path-specific effects using parametric multiply robust methods.
+d      
+d Requires: Stata version 15
+d
+d Distribution-Date: 20240827
+d
+d Author: Geoff Wodtke, University of Chicago
+d Support: email wodtke@@uchicago.edu
+d
+f mrpath.ado
+f mrpathbs.ado
+f mrmne.ado
+f mrpath.sthlp
