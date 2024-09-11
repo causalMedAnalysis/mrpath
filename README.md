@@ -2,7 +2,7 @@
 
 ## Overview
 
-**mrpath** is a Stata module designed to estimate path-specific effects using a parametric multiply robust methods. It provides estimates for the total effect and path-specific effects operating through multiple mediators in a causal sequence.
+**mrpath** is a Stata module designed to estimate path-specific effects using parametric multiply robust methods. It provides estimates for the total effect and path-specific effects operating through multiple mediators in a causal sequence.
 
 ## Syntax
 
