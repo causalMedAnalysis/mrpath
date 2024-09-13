@@ -27,7 +27,7 @@ mrpath depvar mvars [if] [in], dvar(varname) d(real) dstar(real) cvars(varlist) 
 - `censor`: Specifies that the inverse probability weights are censored at the 1st and 99th percentiles.
 - `reps(integer)`: Specifies the number of bootstrap replications (default is 200).
 - `seed(passthru)`: Specifies the seed for bootstrap resampling. If omitted, a random seed is used, and results cannot be replicated.
-- `{help bootstrap##options:bootstrap_options}`: All `bootstrap` options are available.
+- `bootstrap_options`: All `bootstrap` options are available.
 
 ## Description
 
