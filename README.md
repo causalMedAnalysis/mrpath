@@ -1,4 +1,4 @@
-# mrpath: Analysis of Path-Specific Effects using Parametric Multiply Robust Methods
+# mrpath: A Stata Module for Analysis of Path-Specific Effects using Parametric Multiply Robust Methods
 
 ## Overview
 
@@ -24,14 +24,12 @@ mrpath depvar mvars [if] [in], dvar(varname) d(real) dstar(real) cvars(varlist) 
 - `nointeraction`: Specifies whether treatment-mediator interactions are excluded from the outcome models. By default, interactions are included.
 - `cxd`: Includes all two-way interactions between the treatment and baseline covariates in the outcome models.
 - `cxm`: Includes all two-way interactions between the mediator(s) and baseline covariates in the outcome models.
-- `censor`: Specifies that the inverse probability weights are censored at the 1st and 99th percentiles.
-- `reps(integer)`: Specifies the number of bootstrap replications (default is 200).
-- `seed(passthru)`: Specifies the seed for bootstrap resampling. If omitted, a random seed is used, and results cannot be replicated.
+- `censor(numlist)`: Specifies that the inverse probability weights are censored at the percentiles provided in `numlist`.
 - `bootstrap_options`: All `bootstrap` options are available.
 
 ## Description
 
-`mrpath` estimates path-specific effects using the type mr2 multiply robust estimator described in Chapter 6, Section 6.4, of Wodtke and Zhou's *Causal Mediation Analysis*.
+`mrpath` estimates path-specific effects using the type mr2 multiply robust estimator described in Chapter 6, Section 6.4, of Wodtke and Zhou's *Causal Mediation Analysis*. It computes inferential statistics using the nonparametric bootstrap.
 
 If there are K causally ordered mediators, `mrpath` provides estimates for the total effect and then for K+1 path-specific effects: the direct effect of the exposure on the outcome that does not operate through any of the mediators, and then a separate path-specific effect operating through each of the K mediators, net of the mediators that precede it in causal order. If only a single mediator is specified, `mrpath` computes and reports multiply robust estimates of conventional natural direct and indirect effects through a univariate mediator.
 
@@ -41,19 +39,19 @@ If there are K causally ordered mediators, `mrpath` provides estimates for the t
 
 ```stata
 . use nlsy79.dta
-. mrpath std_cesd_age40 ever_unemp_age3539 log_faminc_adj_age3539, dvar(att22) cvars(female black hispan paredu parprof parinc_prank famsize afqt3) d(1) dstar(0) censor reps(1000)
+. mrpath std_cesd_age40 ever_unemp_age3539 log_faminc_adj_age3539, dvar(att22) cvars(female black hispan paredu parprof parinc_prank famsize afqt3) d(1) dstar(0) censor(1 99) reps(1000)
 ```
 
 ### Example 2: Percentile bootstrap CIs with K=3 causally ordered mediators and censored weights
 
 ```stata
-. mrpath std_cesd_age40 cesd_1992 ever_unemp_age3539 log_faminc_adj_age3539, dvar(att22) cvars(female black hispan paredu parprof parinc_prank famsize afqt3) d(1) dstar(0) censor reps(1000)
+. mrpath std_cesd_age40 cesd_1992 ever_unemp_age3539 log_faminc_adj_age3539, dvar(att22) cvars(female black hispan paredu parprof parinc_prank famsize afqt3) d(1) dstar(0) censor(1 99) reps(1000)
 ```
 
 ### Example 3: Percentile bootstrap CIs with K=2 causally ordered mediators and all two-way interactions
 
 ```stata
-. mrpath std_cesd_age40 ever_unemp_age3539 log_faminc_adj_age3539, dvar(att22) cvars(female black hispan paredu parprof parinc_prank famsize afqt3) d(1) dstar(0) cxd cxm censor reps(1000)
+. mrpath std_cesd_age40 ever_unemp_age3539 log_faminc_adj_age3539, dvar(att22) cvars(female black hispan paredu parprof parinc_prank famsize afqt3) d(1) dstar(0) cxd cxm reps(1000)
 ```
 
 ## Saved Results
