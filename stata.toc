@@ -8,7 +8,7 @@ package ^mrpath^ from https://github.com/causalMedAnalysis/mrpath
 {s6hlp}
 
 {smcl}
-{hilite:TITLE}{p 6 8}'MRPATH': module to estimate path-specific effects using parametric multiply robust methods{p_end}
+{hilite:TITLE}{p 6 8}'MRPATH': module to estimate path-specific effects using parametric multiply robust methods {p_end}
 {s6hlp}
 
 ^DESCRIPTION/AUTHOR(S)^

@@ -16,7 +16,7 @@ program define mrpathbs, rclass
 		[NOINTERaction] ///
 		[cxd] ///
 		[cxm] ///
-		[censor] 
+		[censor(numlist min=2 max=2)] 
 		
 	qui {
 		marksample touse
@@ -39,7 +39,7 @@ program define mrpathbs, rclass
 	
 		mrmne `yvar' `mvars' if `touse', ///
 			dvar(`dvar') d(`d') dstar(`dstar') cvars(`cvars') ///
-			`cxd' `cxm' `nointeraction' `censor'
+			`cxd' `cxm' `nointeraction' censor(`censor')
 	
 		return scalar nde=r(nde)
 		return scalar nie=r(nie)
@@ -51,13 +51,13 @@ program define mrpathbs, rclass
 	
 		mrmne `yvar' `mvar1' `mvar2' if `touse', ///
 			dvar(`dvar') d(`d') dstar(`dstar') cvars(`cvars') ///
-			`cxd' `cxm' `nointeraction' `censor'
+			`cxd' `cxm' `nointeraction' censor(`censor')
 	
 		qui scalar mnde_M1M2=r(nde)
 
 		mrmne `yvar' `mvar1' if `touse', ///
 			dvar(`dvar') d(`d') dstar(`dstar') cvars(`cvars') ///
-			`cxd' `cxm' `nointeraction' `censor'		
+			`cxd' `cxm' `nointeraction' censor(`censor')
 		
 		qui scalar mnde_M1=r(nde)
 		
@@ -72,19 +72,19 @@ program define mrpathbs, rclass
 	
 		mrmne `yvar' `mvar1' `mvar2' `mvar3' if `touse', ///
 			dvar(`dvar') d(`d') dstar(`dstar') cvars(`cvars') ///
-			`cxd' `cxm' `nointeraction' `censor'			
+			`cxd' `cxm' `nointeraction' censor(`censor')
 	
 		qui scalar mnde_M1M2M3=r(nde)
 
 		mrmne `yvar' `mvar1' `mvar2' if `touse', ///
 			dvar(`dvar') d(`d') dstar(`dstar') cvars(`cvars') ///
-			`cxd' `cxm' `nointeraction' `censor'	
+			`cxd' `cxm' `nointeraction' censor(`censor')
 		
 		qui scalar mnde_M1M2=r(nde)
 		
 		mrmne `yvar' `mvar1' if `touse', ///
 			dvar(`dvar') d(`d') dstar(`dstar') cvars(`cvars') ///
-			`cxd' `cxm' `nointeraction' `censor'	
+			`cxd' `cxm' `nointeraction' censor(`censor')
 		
 		qui scalar mnde_M1=r(nde)
 		
@@ -100,25 +100,25 @@ program define mrpathbs, rclass
 	
 		mrmne `yvar' `mvar1' `mvar2' `mvar3' `mvar4' if `touse', ///
 			dvar(`dvar') d(`d') dstar(`dstar') cvars(`cvars') ///
-			`cxd' `cxm' `nointeraction' `censor'	
+			`cxd' `cxm' `nointeraction' censor(`censor')
 	
 		qui scalar mnde_M1M2M3M4=r(nde)
 
 		mrmne `yvar' `mvar1' `mvar2' `mvar3' if `touse', ///
 			dvar(`dvar') d(`d') dstar(`dstar') cvars(`cvars') ///
-			`cxd' `cxm' `nointeraction' `censor'	
+			`cxd' `cxm' `nointeraction' censor(`censor')
 		
 		qui scalar mnde_M1M2M3=r(nde)
 		
 		mrmne `yvar' `mvar1' `mvar2' if `touse', ///
 			dvar(`dvar') d(`d') dstar(`dstar') cvars(`cvars') ///
-			`cxd' `cxm' `nointeraction' `censor'	
+			`cxd' `cxm' `nointeraction' censor(`censor')
 		
 		qui scalar mnde_M1M2=r(nde)
 		
 		mrmne `yvar' `mvar1' if `touse', ///
 			dvar(`dvar') d(`d') dstar(`dstar') cvars(`cvars') ///
-			`cxd' `cxm' `nointeraction' `censor'	
+			`cxd' `cxm' `nointeraction' censor(`censor')
 		
 		qui scalar mnde_M1=r(nde)
 		
@@ -135,31 +135,31 @@ program define mrpathbs, rclass
 
 		mrmne `yvar' `mvar1' `mvar2' `mvar3' `mvar4' `mvar5' if `touse', ///
 			dvar(`dvar') d(`d') dstar(`dstar') cvars(`cvars') ///
-			`cxd' `cxm' `nointeraction' `censor'		
+			`cxd' `cxm' `nointeraction' censor(`censor')
 	
 		qui scalar mnde_M1M2M3M4M5=r(nde)
 
 		mrmne `yvar' `mvar1' `mvar2' `mvar3' `mvar4' if `touse', ///
 			dvar(`dvar') d(`d') dstar(`dstar') cvars(`cvars') ///
-			`cxd' `cxm' `nointeraction' `censor'	
+			`cxd' `cxm' `nointeraction' censor(`censor')
 	
 		qui scalar mnde_M1M2M3M4=r(nde)
 
 		mrmne `yvar' `mvar1' `mvar2' `mvar3' if `touse', ///
 			dvar(`dvar') d(`d') dstar(`dstar') cvars(`cvars') ///
-			`cxd' `cxm' `nointeraction' `censor'	
+			`cxd' `cxm' `nointeraction' censor(`censor')
 		
 		qui scalar mnde_M1M2M3=r(nde)
 		
 		mrmne `yvar' `mvar1' `mvar2' if `touse', ///
 			dvar(`dvar') d(`d') dstar(`dstar') cvars(`cvars') ///
-			`cxd' `cxm' `nointeraction' `censor'	
+			`cxd' `cxm' `nointeraction' censor(`censor')
 		
 		qui scalar mnde_M1M2=r(nde)
 		
 		mrmne `yvar' `mvar1' if `touse', ///
 			dvar(`dvar') d(`d') dstar(`dstar') cvars(`cvars') ///
-			`cxd' `cxm' `nointeraction' `censor'	
+			`cxd' `cxm' `nointeraction' censor(`censor')
 		
 		qui scalar mnde_M1=r(nde)
 		

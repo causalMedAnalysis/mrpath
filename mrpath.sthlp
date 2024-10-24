@@ -21,9 +21,7 @@
 {opt nointer:action} 
 {opt cxd} 
 {opt cxm} 
-{opt censor}
-{opt reps(integer)} 
-{opt seed(passthru)}
+{opt censor(numlist)}
 [{it:{help bootstrap##options:bootstrap_options}}]
 
 {phang}{opt depvar} - this specifies the outcome variable.
@@ -52,18 +50,15 @@ included in the outcome models.
 {phang}{opt cxm} - this option specifies that all two-way interactions between the mediator(s) and baseline covariates are
 included in the outcome models.
 
-{phang}{opt censor} - this option specifies that the inverse probability weights used in the robust estimating equations are censored at the 1st and 99th percentiles.
-
-{phang}{opt reps(integer)} - this option specifies the number of replications for bootstrap resampling (the default is 200).
-
-{phang}{opt seed(passthru)} - this option specifies the seed for bootstrap resampling. If this option is omitted, then a random 
-seed is used and the results cannot be replicated. {p_end}
+{phang}{opt censor(numlist)} - this option specifies that the inverse probability weights used in the robust estimating equations are censored at the percentiles supplied in {numlist}. For example,
+censor(1 99) censors the weights at their 1st and 99th percentiles.
 
 {phang}{it:{help bootstrap##options:bootstrap_options}} - all {help bootstrap} options are available. {p_end}
 
 {title:Description}
 
-{pstd}{cmd:mrpath} estimates path-specific effects using the type mr2 multiply robust esimtator described in Chapter 6, Section 6.4, of Wodtke and Zhou "Causal Mediation Analysis."
+{pstd}{cmd:mrpath} estimates path-specific effects using the type mr2 multiply robust esimtator, as described in Chapter 6, Section 6.4, of Wodtke and Zhou "Causal Mediation Analysis."
+It computes inferential statistics using the nonparametric bootstrap. {p_end}
 
 {pstd}If there are K causally ordered mediators, {cmd:mrpath} provides estimates for the total effect and then for K+1 path-specific effects:
 the direct effect of the exposure on the outcome that does not operate through any of the mediators, and then a separate path-specific effect 
@@ -75,21 +70,21 @@ operating through each of the K mediators, net of the mediators that precede it 
 {pstd}Setup{p_end}
 {phang2}{cmd:. use nlsy79.dta} {p_end}
 
-{pstd} percentile bootstrap CIs with K=2 causally ordered mediators and censored weights: {p_end}
+{pstd} percentile bootstrap CIs with K=2 causally ordered mediators and weights censored at their 1st and 99th percentiles: {p_end}
  
-{phang2}{cmd:. mrpath std_cesd_age40 ever_unemp_age3539 log_faminc_adj_age3539, dvar(att22) cvars(female black hispan paredu parprof parinc_prank famsize afqt3) d(1) dstar(0) censor reps(1000)} {p_end}
+{phang2}{cmd:. mrpath std_cesd_age40 ever_unemp_age3539 log_faminc_adj_age3539, dvar(att22) cvars(female black hispan paredu parprof parinc_prank famsize afqt3) d(1) dstar(0) censor(1 99) reps(1000)} {p_end}
 
 {pstd} percentile bootstrap CIs with K=3 causally ordered mediators and censored weights: {p_end}
  
-{phang2}{cmd:. mrpath std_cesd_age40 cesd_1992 ever_unemp_age3539 log_faminc_adj_age3539, dvar(att22) cvars(female black hispan paredu parprof parinc_prank famsize afqt3) d(1) dstar(0) censor reps(1000)} {p_end}
+{phang2}{cmd:. mrpath std_cesd_age40 cesd_1992 ever_unemp_age3539 log_faminc_adj_age3539, dvar(att22) cvars(female black hispan paredu parprof parinc_prank famsize afqt3) d(1) dstar(0) censor(1 99) reps(1000)} {p_end}
 
 {pstd} percentile bootstrap CIs with K=2 causally ordered mediators and all two-way interactions: {p_end}
  
-{phang2}{cmd:. mrpath std_cesd_age40 ever_unemp_age3539 log_faminc_adj_age3539, dvar(att22) cvars(female black hispan paredu parprof parinc_prank famsize afqt3) d(1) dstar(0) cxd cxm censor reps(1000)} {p_end}
+{phang2}{cmd:. mrpath std_cesd_age40 ever_unemp_age3539 log_faminc_adj_age3539, dvar(att22) cvars(female black hispan paredu parprof parinc_prank famsize afqt3) d(1) dstar(0) cxd cxm reps(1000)} {p_end}
 
 {title:Saved results}
 
-{pstd}{cmd:pathwimp} saves the following results in {cmd:e()}:
+{pstd}{cmd:mrpath} saves the following results in {cmd:e()}:
 
 {synoptset 15 tabbed}{...}
 {p2col 5 15 19 2: Matrices}{p_end}
