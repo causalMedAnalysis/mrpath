@@ -13,7 +13,7 @@
 {title:Syntax}
 
 {p 8 18 2}
-{cmd:pathimp} {depvar} {help indepvars:mvars} {ifin} {cmd:,} 
+{cmd:mrpath} {depvar} {help indepvars:mvars} {ifin} {cmd:,} 
 {opt dvar(varname)} 
 {opt d(real)} 
 {opt dstar(real)} 
